@@ -6,6 +6,6 @@ express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('/', (req, res) => res.json({"test":"test"})
-
+  .get('/', (req, res) => res.json({"pages":"index"}))
+  
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
