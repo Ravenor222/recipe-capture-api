@@ -18,7 +18,14 @@ const example = {
   //   res.json({"pages":"do"})
   // })
   // .listen(PORT, () => console.log(`Listening on ${ PORT }`))
- app()
-  .get('/', (req, res) => res.json({"pages":"index"}))
-  .post('/', (req, res) => res.json(example))
+
+
+//  app()
+//   .get('/', (req, res) => res.json({"pages":"index"}))
+//   .post('/', (req, res) => res.json(example))
+//   .listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+
+const server = express()
+  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
