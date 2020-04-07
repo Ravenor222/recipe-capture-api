@@ -6,6 +6,12 @@ const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 const bodyParser = require("body-parser");
 
+
+const identifyImage = require('./helpers/clarifai_helper');
+const getRecipes = require('./helpers/spoonacular_helper');
+
+
+
 app.use(bodyParser.urlencoded({extended: true, parameterLimit: 100000, limit: '50mb'}));
 app.use(bodyParser.json({limit: '50mb'}))
 app.use(bodyParser.urlencoded({extended: true}));
