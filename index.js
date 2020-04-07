@@ -8,11 +8,8 @@ const example = {
   examples:"thing"
 }
 
-// express()
-
-
-
-  app.get('/', (req, res) => res.json({"pages":"index"}))
+app()
+.get('/', (req, res) => res.json({"pages":"index"}))
   // .post('/', (req, res) => res.json(example))
   // .post('/do', (req, res)=> {
   //   res.json({"pages":"do"})
@@ -23,6 +20,6 @@ const example = {
 //  app()
 //   .get('/', (req, res) => res.json({"pages":"index"}))
 //   .post('/', (req, res) => res.json(example))
-//   .listen(PORT, () => console.log(`Listening on ${PORT}`));
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
-server.listen(PORT, () => console.log("server running on port:" + PORT));
+// server.listen(PORT, () => console.log("server running on port:" + PORT));
