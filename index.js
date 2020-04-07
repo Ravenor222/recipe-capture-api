@@ -8,7 +8,7 @@ const example = {
   examples:"thing"
 }
 
-app()
+server()
 .get('/', (req, res) => res.json({"pages":"index"}))
   // .post('/', (req, res) => res.json(example))
   // .post('/do', (req, res)=> {
