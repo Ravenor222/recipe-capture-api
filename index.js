@@ -20,7 +20,7 @@ const example = {
   // .listen(PORT, () => console.log(`Listening on ${ PORT }`))
  const server = app();
 
- server()
+ app()
   .get('/', (req, res) => res.json({"pages":"index"}))
   .post('/', (req, res) => res.json(example))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
