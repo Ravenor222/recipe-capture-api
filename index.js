@@ -5,19 +5,10 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 
+
 app.get('/', (req,res)=> {
-  res.send({"hello":"sir"})
+  res.json({"hello":"sir"})
 })
-
-
-
-
-
-
-
-
-
-
 
 
 
