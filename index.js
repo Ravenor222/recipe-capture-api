@@ -7,7 +7,7 @@ const io = require('socket.io').listen(server);
 
 
 app.get('/', (req,res)=> {
-  res.JSON({"hello":"sir"})
+  res.send({"hello":"sir"})
 })
 
 server.listen(process.env.PORT || 3000);
