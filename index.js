@@ -18,7 +18,9 @@ const example = {
   //   res.json({"pages":"do"})
   // })
   // .listen(PORT, () => console.log(`Listening on ${ PORT }`))
- const server = app()
+ const server = app();
+
+ server()
   .get('/', (req, res) => res.json({"pages":"index"}))
   .post('/', (req, res) => res.json(example))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
