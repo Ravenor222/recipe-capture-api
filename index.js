@@ -32,6 +32,7 @@ app.get('/', function (req, res) {
 app.post('/', async (req,res) => {
   console.log("Made a post request within io connection")
 
+  console.log(req.body.data.profileState, "prof")
   const { intolerances, pantry, allergies, diet } = req.body.data.profileState['_55'];
   
 
@@ -80,8 +81,9 @@ app.post('/', async (req,res) => {
 app.post('/recipes', async (req, res) =>{
 
   let ingredients = req.body.data.ingredients
+  console.log(req.body.data.profileState, 'server')
+
   const { intolerances, pantry, allergies, diet } = req.body.data.profileState['_55'];
-  console.log(intolerances, 'server')
   let newRecipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet);
 
   let recipesArray = [];
