@@ -4,13 +4,47 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
+const bodyParser = require("body-parser");
 
+app.use(bodyParser.urlencoded({extended: true, parameterLimit: 100000, limit: '50mb'}));
+app.use(bodyParser.json({limit: '50mb'}))
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req,res)=> {
   res.send({"hello":"sir"})
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 server.listen(process.env.PORT || 3000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // app()
 // .get('/', (req, res) => res.json({"pages":"index"}))
