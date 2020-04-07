@@ -1,14 +1,20 @@
 require('dotenv').config()
 const app = require('express')
-const PORT = process.env.PORT || 5000
-const io = require("socket.io").listen(app);
 
-const example = {
-  examples:"thing"
-}
+const express = require('express');
+const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
 
-app()
-.get('/', (req, res) => res.json({"pages":"index"}))
+
+app.get('/', (req,res)=> {
+  res.JSON({"hello":"sir"})
+})
+
+server.listen(process.env.PORT || 3000);
+
+// app()
+// .get('/', (req, res) => res.json({"pages":"index"}))
   // .post('/', (req, res) => res.json(example))
   // .post('/do', (req, res)=> {
   //   res.json({"pages":"do"})
@@ -19,6 +25,6 @@ app()
 //  app()
 //   .get('/', (req, res) => res.json({"pages":"index"}))
 //   .post('/', (req, res) => res.json(example))
-.listen(PORT, () => console.log(`Listening on ${PORT}`));
+// .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 // server.listen(PORT, () => console.log("server running on port:" + PORT));
