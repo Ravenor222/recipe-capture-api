@@ -20,9 +20,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 //   console.log("a user connected ;D");
 
 // })
-let time; //testing
-let cuisine; //testing
-
+let time;
+let cuisine; 
 var final = [];
 
 app.get('/', function (req, res) {
@@ -32,15 +31,16 @@ app.get('/', function (req, res) {
 app.post('/', async (req,res) => {
   console.log("Made a post request within io connection")
 
-  console.log(req.body.data, "index.js")
   const { intolerances, pantry, allergies, diet } = req.body.data.profileState['_55'];
+  const numberOfRecipes = req.body.data.profileState['_55']
+  console.log(numberOfRecipes)
   
 
    time = req.body.data.state.time;
    cuisine = req.body.data.state.cuisine;
   
   let results = await identifyImage(req.body.data.photo)
-  let filtered
+  let filtered;
 
 
 
