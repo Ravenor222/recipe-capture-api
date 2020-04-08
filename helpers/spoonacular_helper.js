@@ -2,7 +2,8 @@ const axios = require('axios')
 
 const getRecipes = async (API_KEY, results, time, cuisine, intolerances, pantry, allergies, diet, numberOfRecipes) => {
     let recipeNumber =  numberOfRecipes.value
-    console.log(recipeNumber);
+    console.log(recipeNumber, "recipeNumber");
+    console.log(parseInt(recipeNumber), "parsed recipeNumber");
 
     recipeNumber === null ? recipeNumber = 5 : recipeNumber = parseInt(recipeNumber)
     intolerances === undefined || intolerances === null || intolerances.length === 0 ? intolerances = null : intolerances = intolerances.join(","); // This should be an array
