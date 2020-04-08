@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // })
 let time;
 let cuisine; 
+let numberOfRecipes;
 var final = [];
 
 app.get('/', function (req, res) {
@@ -32,8 +33,8 @@ app.post('/', async (req,res) => {
   console.log("Made a post request within io connection")
 
   const { intolerances, pantry, allergies, diet } = req.body.data.profileState['_55'];
-  const numberOfRecipes = req.body.data.profileState['_55']
-  console.log(numberOfRecipes)
+  numberOfRecipes = req.body.data.numberState['_55']
+  console.log(numberOfRecipes, "1st")
   
 
    time = req.body.data.state.time;
@@ -64,7 +65,7 @@ app.post('/', async (req,res) => {
     ingredients.push(item.name)
   }
   console.log("server: ", ingredients)
-  let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet);
+  let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet, numberOfRecipes);
 
   let recipesArray = [];
   recipesArray.push(ingredients)
@@ -84,7 +85,9 @@ app.post('/recipes', async (req, res) =>{
   console.log(req.body.data, 'server')
 
   const { intolerances, pantry, allergies, diet } = req.body.data.profileSettings['_55'];
-  let newRecipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet);
+  numberOfRecipes = req.body.data.numberSettings['_55'];
+  console.log(numberOfRecipes, "2nd")
+  let newRecipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet, numberOfRecipes);
 
   let recipesArray = [];
   recipesArray.push(ingredients)
