@@ -32,6 +32,7 @@ app.get('/', function (req, res) {
 app.post('/', async (req,res) => {
   console.log("Made a post request within io connection")
 
+  console.log(req.body.data, "index.js")
   const { intolerances, pantry, allergies, diet } = req.body.data.profileState['_55'];
   
 
