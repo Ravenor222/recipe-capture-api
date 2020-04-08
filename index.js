@@ -16,10 +16,7 @@ app.use(bodyParser.urlencoded({extended: true, parameterLimit: 100000, limit: '5
 app.use(bodyParser.json({limit: '50mb'}))
 app.use(bodyParser.urlencoded({extended: true}));
 
-// io.on("connection", socket => {
-//   console.log("a user connected ;D");
 
-// })
 let time;
 let cuisine; 
 let numberOfRecipes;
@@ -33,10 +30,7 @@ app.post('/', async (req,res) => {
   console.log("Made a post request within io connection")
 
   const { intolerances, pantry, allergies, diet } = req.body.data.profileState['_55'];
-  numberOfRecipes = req.body.data.numberState['_55']
-  console.log(numberOfRecipes, "1st")
-  
-
+   numberOfRecipes = req.body.data.numberState['_55'];  
    time = req.body.data.state.time;
    cuisine = req.body.data.state.cuisine;
   
@@ -64,7 +58,6 @@ app.post('/', async (req,res) => {
   for (let item of filtered) {
     ingredients.push(item.name)
   }
-  console.log("server: ", ingredients)
   let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet, numberOfRecipes);
 
   let recipesArray = [];
@@ -82,11 +75,9 @@ app.post('/', async (req,res) => {
 app.post('/recipes', async (req, res) =>{
 
   let ingredients = req.body.data.ingredients
-  console.log(req.body.data, 'server')
 
   const { intolerances, pantry, allergies, diet } = req.body.data.profileSettings['_55'];
   numberOfRecipes = req.body.data.numberSettings['_55'];
-  console.log(numberOfRecipes, "2nd")
   let newRecipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet, numberOfRecipes);
 
   let recipesArray = [];
