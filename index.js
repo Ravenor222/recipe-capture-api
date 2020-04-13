@@ -29,8 +29,13 @@ app.get('/', function (req, res) {
 app.post('/', async (req,res) => {
   console.log("Made a post request within io connection")
 
+  // cannot destructure "interolances" as req.body.data.profileState['_55] is null -> This happens on first time of use, when a profile state has not yet been saved.
+  ;  
+
+
+  req.body.data.numberState['_55']===null ? numberOfRecipes =5: numberOfRecipes = req.body.data.numberState['_55'].value;
+
   const { intolerances, pantry, allergies, diet } = req.body.data.profileState['_55'];
-   numberOfRecipes = req.body.data.numberState['_55'];  
    time = req.body.data.state.time;
    cuisine = req.body.data.state.cuisine;
   
