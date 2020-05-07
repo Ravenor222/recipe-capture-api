@@ -99,7 +99,7 @@ app.post('/', async (req,res) => {
 app.post('/recipes', async (req, res) =>{
 
   let ingredients = req.body.data.ingredients
-
+  console.log('THIS IS A LOG:', req.body.data, "THIS WAS A LOG")
   const { intolerances, pantry, allergies, diet } = req.body.data.profileSettings['_55'];
   req.body.data.numberSettings['_55']===null && req.body.data.numberSettings['_55']===undefined ? numberOfRecipes =5 : numberOfRecipes = req.body.data.numberState['_55'].value;
   // numberOfRecipes = req.body.data.numberSettings['_55'];
