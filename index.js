@@ -33,11 +33,30 @@ app.post('/', async (req,res) => {
   ;  
 
 
-  req.body.data.numberState['_55']===null ? numberOfRecipes =5: numberOfRecipes = req.body.data.numberState['_55'].value;
+  req.body.data.numberState['_55']===null ? numberOfRecipes =5 : numberOfRecipes = req.body.data.numberState['_55'].value;
 
-  const { intolerances, pantry, allergies, diet } = req.body.data.profileState['_55'];
-   time = req.body.data.state.time;
-   cuisine = req.body.data.state.cuisine;
+  let intolerances;
+  let pantry;
+  let allergies;
+  let diet;
+
+  if (req.body.data.profileState['_55'] === null) {
+    time = "Any";
+    cuisine = "Any";
+    intolerances=null;
+    pantry=null;
+    allergies=null;
+    diet=null;
+  } else {
+    intolerances = req.body.data.profileState['_55'].intolerances
+    pantry=req.body.data.profileState['_55'].pantry
+    allergies=req.body.data.profileState['_55'].allergies
+    diet=req.body.data.profileState['_55'].diet
+  } 
+
+  // const { intolerances, pantry, allergies, diet } = req.body.data.profileState['_55'];
+  //  time = req.body.data.state.time;
+  //  cuisine = req.body.data.state.cuisine;
   
   let results = await identifyImage(req.body.data.photo)
   let filtered;
@@ -82,7 +101,8 @@ app.post('/recipes', async (req, res) =>{
   let ingredients = req.body.data.ingredients
 
   const { intolerances, pantry, allergies, diet } = req.body.data.profileSettings['_55'];
-  numberOfRecipes = req.body.data.numberSettings['_55'];
+  req.body.data.numberState['_55']===null ? numberOfRecipes =5 : numberOfRecipes = req.body.data.numberState['_55'].value;
+  // numberOfRecipes = req.body.data.numberSettings['_55'];
   let newRecipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet, numberOfRecipes);
 
   let recipesArray = [];
