@@ -109,7 +109,7 @@ app.post('/', async (req,res) => {
     { id: 'test',
     name: 'butter' }]
   } else {
-    filtered = filtered = result.filter(x => x.value > 0.80 && !forbiddenDictionary.includes(x.name))
+    results===undefined ? console.log('its undefined') : filtered = results.filter(x => x.value > 0.80 && !forbiddenDictionary.includes(x.name))
   }
   
 
