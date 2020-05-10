@@ -109,7 +109,7 @@ app.post('/', async (req,res) => {
     { id: 'test',
     name: 'butter' }]
   } else {
-    results===undefined ? console.log('its undefined') : filtered = results.filter(x => x.value > 0.80 && !forbiddenDictionary.includes(x.name))
+    results===undefined ? console.log('its undefined') : filtered = results .filter(x => x.value > 0.80 && !forbiddenDictionary.includes(x.name))
   }
   
 
@@ -135,8 +135,14 @@ app.post('/', async (req,res) => {
 app.post('/recipes', async (req, res) =>{
 
   let ingredients = req.body.data.ingredients
+  // let intolerances;
+  // let pantry;
+  // let allergies;
+  // let diet;
   const { intolerances, pantry, allergies, diet } = req.body.data.profileSettings['_55'];
-  req.body.data.numberSettings['_55']===null && req.body.data.numberSettings['_55']===undefined ? numberOfRecipes =5 : numberOfRecipes = req.body.data.numberSettings['_55'].value;
+  // req.body.data.profileSettings['_55'] === null ? 
+
+  req.body.data.numberSettings['_55'].value ===null && req.body.data.numberSettings['_55']===undefined ? numberOfRecipes =5 : numberOfRecipes = req.body.data.numberSettings['_55'].value;
   // numberOfRecipes = req.body.data.numberSettings['_55'];
   let newRecipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet, numberOfRecipes);
 
