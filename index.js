@@ -135,11 +135,18 @@ app.post('/', async (req,res) => {
 app.post('/recipes', async (req, res) =>{
 
   let ingredients = req.body.data.ingredients
-  // let intolerances;
-  // let pantry;
-  // let allergies;
-  // let diet;
-  const { intolerances, pantry, allergies, diet } = req.body.data.profileSettings['_55'];
+  if (req.body.data.profileState['_55'] === null) {
+    intolerances=null;
+    pantry=null;
+    allergies=null;
+    diet=null;
+  } else {
+    intolerances = req.body.data.profileState['_55'].intolerances
+    pantry=req.body.data.profileState['_55'].pantry
+    allergies=req.body.data.profileState['_55'].allergies
+    diet=req.body.data.profileState['_55'].diet
+  } 
+  // const { intolerances, pantry, allergies, diet } = req.body.data.profileSettings['_55'];
   // req.body.data.profileSettings['_55'] === null ? 
 
   req.body.data.numberSettings['_55'].value ===null && req.body.data.numberSettings['_55']===undefined ? numberOfRecipes =5 : numberOfRecipes = req.body.data.numberSettings['_55'].value;
