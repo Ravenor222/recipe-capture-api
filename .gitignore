@@ -1,6 +1,7 @@
 .env
 .env*
-
+node_modules*
+node_modules/
 # Node build artifacts
 
 npm-debug.log
