@@ -76,7 +76,7 @@ app.post('/', async (req,res) => {
   let allergies;
   let diet;
 
-  if (req.body.data.profileState['_55'] === null) {
+  if (req.body.data.profileState['_55'] === null || req.body.data.profileState['_55'] === undefined) {
     time = "Any";
     cuisine = "Any";
     intolerances=null;
@@ -135,7 +135,7 @@ app.post('/', async (req,res) => {
 app.post('/recipes', async (req, res) =>{
 
   let ingredients = req.body.data.ingredients
-  if (req.body.data.profileState['_55'] === null) {
+  if (req.body.data.profileState['_55'] === null || req.body.data.profileState['_55'] === undefined ) {
     intolerances=null;
     pantry=null;
     allergies=null;
